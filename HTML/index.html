@@ -5,12 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/styles.css">
     <title>Break It All</title>
     <script src="../JS/script.js" defer></script>
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+
+    <!-- SCRIPTS -->
+    <script src="main.js" defer></script>
+
+    <!-- HTML VERSION OF IMPORTING THE MODULE -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.53.1/dist/phaser-arcade-physics.min.js"></script>
+
 </head>
 
 <body>
+
+    <!-- USING SCRIPT INSTEAD OF JS FILE BC "IMPORT 'PHASER'" DOESN"T WORK? -->
+    <script type="text/javascript">
+        /* ---- SETUP ---- */
+        const config = {
+            /* WHAT IT WILL USE TO RENDER IF WEBGL FAILS, USES CANVAS */
+            type: Phaser.AUTO,
+
+            /* SIZE OF CANVAS ELEMENT */
+            width: 800,
+            height: 600
+        };
+
+        const game = new Phaser.Game(config);
+    </script>
 
 </body>
 
