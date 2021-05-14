@@ -62,6 +62,7 @@
         this.load.setBaseURL('https://labs.phaser.io/assets');
 
         /* FIRST PARAM IS JUST SETTING A VAR NAME*/
+        /* SECOND FINISHES THE URL REFERENCE */
         this.load.image('sky', '/skies/sky4.png');
         this.load.image('ground', '/sprites/platform.png');
         this.load.image('star', '/phaser3/star2.png');
@@ -94,6 +95,10 @@
 
         /* CREATING A PLAYER CHARACTER!!! */
         const player = this.physics.add.sprite(100, 450, 'dude');
+
+        /* SETTING SPRITE OBJECT PHYSICS*/
+        player.setColliderWorldBounds(true); // STAYS WITHIN CANVAS
+        player.setBounce(0.2); // BOUNCES WHEN HE HITS THE EDGE
         
     }
 
