@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "browser": "^0.2.6",
+    "sync": "^0.2.5"
+  }
+}
