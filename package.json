@@ -1,6 +1,13 @@
 {
-  "dependencies": {
-    "browser": "^0.2.6",
-    "sync": "^0.2.5"
-  }
+  "devDependencies": {
+    "browser-sync": "^2.26.14"
+  },
+  
+  "scripts": {
+    "dev-server": "browser-sync start --server --files ='**/*.js'"
+    },
+
+    "comments": {
+    "dev-server-script": "browser-sync not global; put launch command in script - https://stackoverflow.com/a/55857641"
+    }
 }
