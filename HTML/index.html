@@ -33,10 +33,57 @@
 
             /* SIZE OF CANVAS ELEMENT */
             width: 800,
-            height: 600
+            height: 600,
+
+            /* GAME IS A SEQUENCE OF SCENES */
+            /* INSTANCES NEED CRUD FUNCTIONALITY FOR RENDER */
+            scene:{
+                preload: preload,
+                create: create,
+                update: update
+            }
         };
 
         const game = new Phaser.Game(config);
+
+         /* NEED TO PRELOAD ASSETS FIRST*/ 
+    function preload() {
+        /* ASSETS ARE SOURCED FROM THEIR SITE*/
+        this.load.setBaseURL('https://labs.phaser.io/assets');
+
+        /* FIRST PARAM IS JUST SETTING A VAR NAME*/
+        this.load.image('sky', '/skies/sky4.png');
+        this.load.image('ground', '/sprites/platform.png');
+        this.load.image('star', '/phaser3/star2.png');
+        this.load.spritesheet('dude',
+            '/sprites/dude.png',
+            { frameWidth: 32, frameHeight: 48 }
+        );
+    }
+
+         /* ADDING ASSETS TO BROWSER/CANVAS */
+    function create() {
+
+        /* LOADED IN ORDER OF BACK TO FRONT */
+        this.add.image(400, 300, 'sky');
+        this.add.image(400, 300, 'star');
+    }
+
+    function update() {
+    }
+
+    /* WEBSITE TUTORIAL IS OUT OF DATE. FOLLOWING preload() DOES NOT WORK BC FILESTRUCTURE DOESN'T EXIST
+        http://phaser.io/tutorials/making-your-first-phaser-3-game/part2 */
+    // function preload() {
+    //     this.load.image('sky', 'assets/sky.png');
+    //     this.load.image('ground', 'assets/platform.png');
+    //     this.load.image('star', 'assets/star.png');
+    //     this.load.image('bomb', 'assets/bomb.png');
+    //     this.load.spritesheet('dude',
+    //         'assets/dude.png',
+    //         { frameWidth: 32, frameHeight: 48 }
+    //     );
+    // }
     </script>
 
 </body>
