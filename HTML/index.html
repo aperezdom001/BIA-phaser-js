@@ -77,6 +77,7 @@
         /* LOADED IN ORDER OF BACK TO FRONT */
         this.add.image(400, 300, 'sky');
         this.add.image(400, 300, 'star');
+        
 
         /* PLATFORMS ARE GROUPED OBJECTS: STATIC */
         platforms = this.physics.add.staticGroup();
@@ -84,6 +85,12 @@
         /* SETTING THE GROUND USING A PLATFORM (SCALING UP TO FILL THE SCENE)*/
         /* ALWAYS ALWAYS USE refreshBody() WHEN RESCALING A STATIC OBJECT*/
         platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+
+        /* ADDING FLOATING PLATFORMS*/
+        /* NO RESCALE SO NO refesh() */
+        platforms.create(600, 400, 'ground');
+        platforms.create(50, 250, 'ground');
+        platforms.create(750, 220, 'ground');
         
     }
 
