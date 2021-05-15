@@ -87,6 +87,10 @@
         /* ALWAYS ALWAYS USE refreshBody() WHEN RESCALING A STATIC OBJECT*/
         platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
+        /* SETTING THE GROUND USING A PLATFIRM (SCALING UP TO FILL THE SCENE) */
+        /* ALWAYS ALWAYS USE refreshBody() WHEN RESCALING A STATIC OBJECT */
+        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+
         /* ADDING FLOATING PLATFORMS*/
         /* NO RESCALE SO NO refesh() */
         platforms.create(600, 400, 'ground');
@@ -99,6 +103,10 @@
         /* SETTING SPRITE OBJECT PHYSICS*/
         player.setColliderWorldBounds(true); // STAYS WITHIN CANVAS
         player.setBounce(0.2); // BOUNCES WHEN HE HITS THE EDGE
+
+        /* DETECT COLLISION WITH PLATFORMS*/
+        /* SO SPRITE DOESNT'T FALL THROUGH TO SCREEN BOTTOM */
+        this.physics.add.collider(player, platforms);
         
     }
 
