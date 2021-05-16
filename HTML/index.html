@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Break It All</title>
-    <script src="../JS/script.js" defer></script>
     <link rel="stylesheet" href="../CSS/styles.css">
     <style type="text/css">
         body {
@@ -15,7 +14,8 @@
     </style>
 
     <!-- SCRIPTS -->
-    <script src="main.js" defer></script>
+    <!-- <script src="main.js" defer></script> -->
+    <script src="../JS/script.js" defer></script>
 
     <!-- HTML VERSION OF IMPORTING THE MODULE -->
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.53.1/dist/phaser-arcade-physics.min.js"></script>
@@ -36,6 +36,7 @@
             height: 600,
 
             /* GAME PHYSICS */
+            /* OBJECT FACTORYL this.physics.add(foo)*/
             physics:{
                 default: 'arcade',
                 arcade: {
@@ -87,10 +88,6 @@
         /* ALWAYS ALWAYS USE refreshBody() WHEN RESCALING A STATIC OBJECT*/
         platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
-        /* SETTING THE GROUND USING A PLATFIRM (SCALING UP TO FILL THE SCENE) */
-        /* ALWAYS ALWAYS USE refreshBody() WHEN RESCALING A STATIC OBJECT */
-        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-
         /* ADDING FLOATING PLATFORMS*/
         /* NO RESCALE SO NO refesh() */
         platforms.create(600, 400, 'ground');
@@ -101,7 +98,7 @@
         const player = this.physics.add.sprite(100, 450, 'dude');
 
         /* SETTING SPRITE OBJECT PHYSICS*/
-        player.setColliderWorldBounds(true); // STAYS WITHIN CANVAS
+        player.setCollideWorldBounds(true); // STAYS WITHIN CANVAS
         player.setBounce(0.2); // BOUNCES WHEN HE HITS THE EDGE
 
         /* DETECT COLLISION WITH PLATFORMS*/
