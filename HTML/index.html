@@ -157,6 +157,11 @@
             player.setVelocityX(0);
             player.anims.play('turn');
         }
+
+        // JUMPING: CHECK IF ON THE FLOOR SO NO DOUBLE JUMPS //
+        if(cursors.up.isDown && player.body.touching.down){
+            player.setVelocityY(-300); // HEIGHT OF JUMP
+        }
     }
 
     /* WEBSITE TUTORIAL IS OUT OF DATE. FOLLOWING preload() DOES NOT WORK BC FILESTRUCTURE DOESN'T EXIST
