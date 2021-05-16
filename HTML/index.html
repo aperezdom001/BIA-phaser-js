@@ -118,7 +118,23 @@
             repeat: -1  // LOOPS THROUGH SET FRAMES
         });
 
-        // SETTING TRIGGER
+        // PLAYER FACING FORWARD
+        this.anims.create({
+            key: 'turn',
+            frames:[{ key: 'dude', frame: 4 }],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        //
+
+        // KEYBOARD FUNCTIONALITY
         cursors = this.input.keyboard.createCursorKeys();
 
     }
@@ -126,9 +142,20 @@
     function update() {
 
         /* DEFINING WHAT HAPPENS WITH EACH KEYBOARD TRIGGER*/
+
         if(cursors.left.isDown){
             player.setVelocityX(-160);  // LEFT = NEGATIVE X AXIS
-            player.anims.play('left, true'); // CALLING 'LEFT' ANIM FROM BEFORE
+            player.anims.play('left', true); // CALLING 'LEFT' ANIM FROM BEFORE
+        } 
+        
+        else if(cursors.right.isDown) {
+            player.setVelocityX(160);
+            player.anims.play('right', true);
+        }
+        
+        else{
+            player.setVelocityX(0);
+            player.anims.play('turn');
         }
     }
 
