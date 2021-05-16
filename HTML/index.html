@@ -68,7 +68,8 @@
         /* SECOND FINISHES THE URL REFERENCE */
         this.load.image('sky', '/skies/sky4.png');
         this.load.image('ground', '/sprites/platform.png');
-        this.load.image('star', '/phaser3/star2.png');
+        // this.load.image('star', '/phaser3/star2.png');
+        this.load.image('star', '/demoscene/star.png');
         this.load.spritesheet('dude',
             '/sprites/dude.png',
             { frameWidth: 32, frameHeight: 48 }
@@ -80,7 +81,7 @@
 
         /* LOADED IN ORDER OF BACK TO FRONT */
         this.add.image(400, 300, 'sky');
-        this.add.image(400, 300, 'star');
+        // this.add.image(400, 300, 'star');
         
 
         /* PLATFORMS ARE GROUPED OBJECTS: STATIC */
@@ -95,6 +96,22 @@
         platforms.create(600, 400, 'ground');
         platforms.create(50, 250, 'ground');
         platforms.create(750, 220, 'ground');
+
+        /* ---- FALLING STAR OBJECTS! ---- */
+        // GROUP IS NOT STATIC
+        stars = this.physics.add.group({
+            key: 'star', // TEXTURE KEY
+            repeat: 11, // 12 STARS IN TOTAL
+            setXY: { x: 12, y: 0, stepX: 70} // SIBLING SPACING = 70px
+        })
+
+        // COLLIDE WITH PLATFORMS
+        this.physics.add.collider(stars, platforms);
+
+        // RANDOM BOUNCE VALUE
+        stars.children.iterate(function (child) {
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+        });
 
         /* CREATING A PLAYER CHARACTER!!! */
         player = this.physics.add.sprite(100, 450, 'dude');
