@@ -112,13 +112,13 @@
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
         });
 
-        /* ---- FALLING ASTEROIDS ---- */
+        /* ---- FALLING ASTEROIDS (RELEASED WHEN A STAR IS COLLECTED) ---- */
         asteroids = this.physics.add.group();
         this.physics.add.collider(asteroids, platforms);
-        var ast = asteroids.create(10, 16, 'asteroid').setScale(0.5);
-        ast.setBounce(1);
-        ast.setCollideWorldBounds(true);
-        ast.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        // var ast = asteroids.create(10, 16, 'asteroid').setScale(0.5);
+        // ast.setBounce(1);
+        // ast.setCollideWorldBounds(true);
+        // ast.setVelocity(Phaser.Math.Between(-200, 200), 20);
 
         /* CREATING A PLAYER CHARACTER!!! */
         player = this.physics.add.sprite(100, 450, 'dude');
@@ -202,6 +202,9 @@
         // ADD TO PLAYER SCORE
         score+=10;
         scoreText.setText('Score ' + score);
+
+        // NEW ASTEROID ONLY AFTER PLAY GETS A STAR
+        dropAsteroid();
     }
 
         function createPlatforms(platforms){
@@ -215,6 +218,14 @@
         platforms.create(50, 250, 'ground');
         platforms.create(750, 220, 'ground');
 
+        }
+
+        function dropAsteroid(){
+            // Group.create() RETURNS INSTANCE OF NEW OBJECT
+            var ast = asteroids.create(10, 16, 'asteroid').setScale(0.5);
+            ast.setBounce(1);
+            ast.setCollideWorldBounds(true);
+            ast.setVelocity(Phaser.Math.Between(-200, 200), 200); // VARIABLE VELOCITY
         }
 
     /* WEBSITE TUTORIAL IS OUT OF DATE. FOLLOWING preload() DOES NOT WORK BC FILESTRUCTURE DOESN'T EXIST
