@@ -86,16 +86,7 @@
 
         /* PLATFORMS ARE GROUPED OBJECTS: STATIC */
         platforms = this.physics.add.staticGroup();
-
-        /* SETTING THE GROUND USING A PLATFORM (SCALING UP TO FILL THE SCENE)*/
-        /* ALWAYS ALWAYS USE refreshBody() WHEN RESCALING A STATIC OBJECT*/
-        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-
-        /* ADDING FLOATING PLATFORMS*/
-        /* NO RESCALE SO NO refesh() */
-        platforms.create(600, 400, 'ground');
-        platforms.create(50, 250, 'ground');
-        platforms.create(750, 220, 'ground');
+        createPlatforms(platforms);
 
         /* ---- FALLING STAR OBJECTS! ---- */
         // GROUP IS NOT STATIC
@@ -187,9 +178,24 @@
     }
 
     function collectStar(player, star){
+        // TEST
+        console.log('Char collect the star');
         // MAKE STAR INVISIBLE
         star.disableBody(true, true);
     }
+
+        function createPlatforms(platforms){
+     /* SETTING THE GROUND USING A PLATFORM (SCALING UP TO FILL THE SCENE)*/
+        /* ALWAYS ALWAYS USE refreshBody() WHEN RESCALING A STATIC OBJECT*/
+        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+
+        /* ADDING FLOATING PLATFORMS*/
+        /* NO RESCALE SO NO refesh() */
+        platforms.create(600, 400, 'ground');
+        platforms.create(50, 250, 'ground');
+        platforms.create(750, 220, 'ground');
+
+        }
 
     /* WEBSITE TUTORIAL IS OUT OF DATE. FOLLOWING preload() DOES NOT WORK BC FILESTRUCTURE DOESN'T EXIST
         http://phaser.io/tutorials/making-your-first-phaser-3-game/part2 */
