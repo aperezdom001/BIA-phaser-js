@@ -124,6 +124,11 @@
         /* SO SPRITE DOESNT'T FALL THROUGH TO SCREEN BOTTOM */
         this.physics.add.collider(player, platforms);
 
+        /* DETECT OVERLAP WITH STARS => COLLECT */
+        this.physics.add.collider(stars, platforms); // ALLOW FOR COLLISION
+        this.physics.add.overlap(player, stars, collectStar, null, this);
+        // UPON OVERLAP, CALL collectStar();
+
         /* ---- ANIMATIONS!! ---- */
         this.anims.create({
             // KEYBOARD TRIGGER
@@ -179,6 +184,11 @@
         if(cursors.up.isDown && player.body.touching.down){
             player.setVelocityY(-300); // HEIGHT OF JUMP
         }
+    }
+
+    function collectStar(player, star){
+        // MAKE STAR INVISIBLE
+        star.disableBody(true, true);
     }
 
     /* WEBSITE TUTORIAL IS OUT OF DATE. FOLLOWING preload() DOES NOT WORK BC FILESTRUCTURE DOESN'T EXIST
