@@ -55,6 +55,8 @@
         };
 
         const game = new Phaser.Game(config);
+        var score = 0;
+        var scoreText = 0;
         var platforms;
         var player;
         var cursor;
@@ -82,6 +84,10 @@
         /* LOADED IN ORDER OF BACK TO FRONT */
         this.add.image(400, 300, 'sky');
         // this.add.image(400, 300, 'star');
+
+        /* SHOW PLAYER SCORE (COORDINATES, DEFAULT STRING, STYLING) */
+        scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+
         
 
         /* PLATFORMS ARE GROUPED OBJECTS: STATIC */
@@ -182,6 +188,10 @@
         console.log('Char collect the star');
         // MAKE STAR INVISIBLE
         star.disableBody(true, true);
+
+        // ADD TO PLAYER SCORE
+        score+=10;
+        scoreText.setText('Score ' + score);
     }
 
         function createPlatforms(platforms){
