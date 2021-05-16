@@ -203,8 +203,20 @@
         score+=10;
         scoreText.setText('Score ' + score);
 
+        /* -- DROP ASTEROID -- */
+        // IF LAST STAR, RESET ALL STARS TO ACTIVE
+        if(stars.countActive(true) === 0){
+            stars.children.iterate(function (child){
+                child.enableBody(true, child.x, 0, true, true);
+            });
+        }
+
+        // RANDOMLY GENERATE X COORDINATE TO DROP FROM SKY
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+        dropAsteroid(x);
+
         // NEW ASTEROID ONLY AFTER PLAY GETS A STAR
-        dropAsteroid();
+        // dropAsteroid();
     }
 
         function createPlatforms(platforms){
@@ -221,6 +233,7 @@
         }
 
         function dropAsteroid(){
+            console.log('Astroid dropped')
             // Group.create() RETURNS INSTANCE OF NEW OBJECT
             var ast = asteroids.create(10, 16, 'asteroid').setScale(0.5);
             ast.setBounce(1);
