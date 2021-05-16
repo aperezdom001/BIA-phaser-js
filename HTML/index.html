@@ -61,6 +61,7 @@
         var asteroids;
         var player;
         var cursor;
+        var gameOver;
 
          /* NEED TO PRELOAD ASSETS FIRST*/ 
     function preload() {
@@ -112,13 +113,6 @@
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
         });
 
-        /* ---- FALLING ASTEROIDS (RELEASED WHEN A STAR IS COLLECTED) ---- */
-        asteroids = this.physics.add.group();
-        this.physics.add.collider(asteroids, platforms);
-        // var ast = asteroids.create(10, 16, 'asteroid').setScale(0.5);
-        // ast.setBounce(1);
-        // ast.setCollideWorldBounds(true);
-        // ast.setVelocity(Phaser.Math.Between(-200, 200), 20);
 
         /* CREATING A PLAYER CHARACTER!!! */
         player = this.physics.add.sprite(100, 450, 'dude');
@@ -126,6 +120,11 @@
         /* SETTING SPRITE OBJECT PHYSICS*/
         player.setCollideWorldBounds(true); // STAYS WITHIN CANVAS
         player.setBounce(0.2); // BOUNCES WHEN HE HITS THE EDGE
+
+         /* ---- FALLING ASTEROIDS (RELEASED WHEN A STAR IS COLLECTED) ---- */
+         asteroids = this.physics.add.group();
+        this.physics.add.collider(asteroids, platforms);
+        this.physics.add.collider(player, asteroids, asteroidHit, null, this);
 
         /* DETECT COLLISION WITH PLATFORMS*/
         /* SO SPRITE DOESNT'T FALL THROUGH TO SCREEN BOTTOM */
@@ -170,6 +169,11 @@
 
     function update() {
 
+        // IF THE GAME IS OVER...
+        if(gameOver){
+            return;
+        }
+
         /* DEFINING WHAT HAPPENS WITH EACH KEYBOARD TRIGGER*/
 
         if(cursors.left.isDown){
@@ -191,6 +195,18 @@
         if(cursors.up.isDown && player.body.touching.down){
             player.setVelocityY(-300); // HEIGHT OF JUMP
         }
+    }
+
+    function asteroidHit(player, ast){
+        // IF HIT, STOP EVERYTHING
+        this.physics.pause();
+
+        // FADE PLAYER, RESET SPRITE
+        player.setTint(0xff0000);
+        player.anims.play('turn');
+
+        // END GAME
+        gameOver = true;
     }
 
     function collectStar(player, star){
@@ -232,10 +248,10 @@
 
         }
 
-        function dropAsteroid(){
+        function dropAsteroid(x){
             console.log('Astroid dropped')
             // Group.create() RETURNS INSTANCE OF NEW OBJECT
-            var ast = asteroids.create(10, 16, 'asteroid').setScale(0.5);
+            var ast = asteroids.create(x, 16, 'asteroid').setScale(0.5);
             ast.setBounce(1);
             ast.setCollideWorldBounds(true);
             ast.setVelocity(Phaser.Math.Between(-200, 200), 200); // VARIABLE VELOCITY
