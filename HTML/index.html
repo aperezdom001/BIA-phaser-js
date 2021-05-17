@@ -60,6 +60,7 @@
         var platforms;
         var asteroids;
         var player;
+        var enemy;
         var cursor;
         var gameOver;
 
@@ -67,6 +68,8 @@
     function preload() {
         /* ASSETS ARE SOURCED FROM THEIR SITE*/
         this.load.setBaseURL('https://labs.phaser.io/assets');
+        
+        
 
         /* FIRST PARAM IS JUST SETTING A VAR NAME*/
         /* SECOND FINISHES THE URL REFERENCE */
@@ -79,6 +82,8 @@
             '/sprites/dude.png',
             { frameWidth: 32, frameHeight: 48 }
         );
+        this.load.image('enemy', '../../assets/enemyPlaceholder.png');
+
     }
 
          /* ADDING ASSETS TO BROWSER/CANVAS */
@@ -116,19 +121,23 @@
 
         /* CREATING A PLAYER CHARACTER!!! */
         player = this.physics.add.sprite(100, 450, 'dude');
+        enemy = this.physics.add.sprite(300, 450, 'enemy');
 
         /* SETTING SPRITE OBJECT PHYSICS*/
         player.setCollideWorldBounds(true); // STAYS WITHIN CANVAS
         player.setBounce(0.2); // BOUNCES WHEN HE HITS THE EDGE
 
+        enemy.setCollideWorldBounds(true);
+        enemy.setBounce(0.2);
+
          /* ---- FALLING ASTEROIDS (RELEASED WHEN A STAR IS COLLECTED) ---- */
          asteroids = this.physics.add.group();
         this.physics.add.collider(asteroids, platforms);
-        this.physics.add.collider(player, asteroids, asteroidHit, null, this);
+        this.physics.add.collider(player, enemy, asteroids, asteroidHit, null, this);
 
         /* DETECT COLLISION WITH PLATFORMS*/
         /* SO SPRITE DOESNT'T FALL THROUGH TO SCREEN BOTTOM */
-        this.physics.add.collider(player, platforms);
+        this.physics.add.collider(player, enemy, platforms); //for some reason when I add an enemy, the player falls through the screen too
 
         /* DETECT OVERLAP WITH STARS => COLLECT */
         this.physics.add.collider(stars, platforms); // ALLOW FOR COLLISION
