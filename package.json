@@ -4,7 +4,7 @@
     "browser-sync": "^2.26.14"
   },
   "scripts": {
-    "start": "node script.js",
+    "start": "node ./docs/script.js",
     "dev-server": "browser-sync start --server --files ='**/*.js'"
   },
   "comments": {
