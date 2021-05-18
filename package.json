@@ -1,4 +1,5 @@
 {
+  
   "devDependencies": {
     "browser-sync": "^2.26.14"
   },
@@ -10,5 +11,7 @@
   },
   "dependencies": {
     "phaser": "^3.54.0"
-  }
+  },
+
+  "homepage" : "https://github.com/aperezdom001/BIA-phaser-js"
 }

@@ -1,30 +1,6 @@
 console.log("JS linked!");
 
-// CONNECTING MY BACKEND //
-const dataElement = document.querySelector('#data')
-const dataButtonElement = document.querySelector('#data-button')
-dataButtonElement.addEventListener('click', async (e) => {
-  try {
-    const response = await fetch('mydataurl.com/somethingIneed')
-    const data = await response.json()
-    dataElement.innerHTML = data.content; // This is made up but something in the api has to have the content i want to add
-  } catch(error){
-   console.error(error)
-  }
-})
 
-//CONNECTING MY THIRD PARTY API //
-const musicElement = document.querySelector('#music')
-const musicButtonElement = document.querySelector('#music-button')
-musicButtonElement.addEventListener('click', async (e) => {
-  try {
-    const response = await fetch('mydataurl.com/somethingIneed')
-    const data = await response.json()
-    dataElement.innerHTML = data.content; // This is made up but something in the api has to have the content i want to add
-  } catch(error){
-   console.error(error)
-  }
-})
 
 /* ---- SETUP ---- */
     const config = {
@@ -256,6 +232,32 @@ function collectStar(player, star){
         ast.setCollideWorldBounds(true);
         ast.setVelocity(Phaser.Math.Between(-200, 200), 200); // VARIABLE VELOCITY
     }
+
+    // CONNECTING MY BACKEND //
+const dataElement = document.querySelector('#data')
+const dataButtonElement = document.querySelector('#data-button')
+dataButtonElement.addEventListener('click', async (e) => {
+  try {
+    const response = await fetch('mydataurl.com/somethingIneed')
+    const data = await response.json()
+    dataElement.innerHTML = data.content; // This is made up but something in the api has to have the content i want to add
+  } catch(error){
+   console.error(error)
+  }
+});
+
+//CONNECTING MY THIRD PARTY API //
+const musicElement = document.querySelector('#music')
+const musicButtonElement = document.querySelector('#music-button')
+musicButtonElement.addEventListener('click', async (e) => {
+  try {
+    const response = await fetch('https://api.genius.com/search?q=Soda%20Stereo&access_token=jmbsGwRanRzejMdGqv1A3OyybuuX4XHYZPqESgSQh2o00PbV1bqhW48D3W72ZlMO');
+    const data = await response.json()
+    dataElement.innerHTML = data.content; // This is made up but something in the api has to have the content i want to add
+  } catch(error){
+   console.error(error)
+  }
+});
 
 /* WEBSITE TUTORIAL IS OUT OF DATE. FOLLOWING preload() DOES NOT WORK BC FILESTRUCTURE DOESN'T EXIST
     http://phaser.io/tutorials/making-your-first-phaser-3-game/part2 */
