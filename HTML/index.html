@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../CSS/styles.css">
     <style type="text/css">
         body {
-            margin: 0;
+            margin: 300px;
         }
     </style>
 
@@ -60,7 +60,9 @@
         var platforms;
         var asteroids;
         var player;
+        var playerHealth = 50;
         var enemy;
+        var enemyHealth = 50;
         var cursor;
         var gameOver;
 
@@ -70,10 +72,11 @@
         this.load.setBaseURL('https://labs.phaser.io/assets');
         
         
+        
 
         /* FIRST PARAM IS JUST SETTING A VAR NAME*/
         /* SECOND FINISHES THE URL REFERENCE */
-        this.load.image('sky', '/skies/sky4.png');
+        this.load.image('sky', '/skies/sky1.png');
         this.load.image('ground', '/sprites/platform.png');
         // this.load.image('star', '/phaser3/star2.png');
         this.load.image('star', '/demoscene/star.png');
@@ -82,7 +85,10 @@
             '/sprites/dude.png',
             { frameWidth: 32, frameHeight: 48 }
         );
-        this.load.image('enemy', '../../assets/enemyPlaceholder.png');
+        this.load.spritesheet('enemy', '/sprites/wasp.png', 
+        { frameWidth: 36, frameHeight: 48}
+        );
+    
 
     }
 
@@ -95,6 +101,8 @@
 
         /* SHOW PLAYER SCORE (COORDINATES, DEFAULT STRING, STYLING) */
         scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+        
+
 
         
 
@@ -119,30 +127,35 @@
         });
 
 
-        /* CREATING A PLAYER CHARACTER!!! */
+        /* CREATING A PLAYER AND ENEMY CHARACTER!!! */
         player = this.physics.add.sprite(100, 450, 'dude');
-        enemy = this.physics.add.sprite(300, 450, 'enemy');
+        // enemy = this.physics.add.sprite(300, 450, 'enemy');
 
         /* SETTING SPRITE OBJECT PHYSICS*/
         player.setCollideWorldBounds(true); // STAYS WITHIN CANVAS
         player.setBounce(0.2); // BOUNCES WHEN HE HITS THE EDGE
 
-        enemy.setCollideWorldBounds(true);
-        enemy.setBounce(0.2);
+        // enemy.setCollideWorldBounds(true);
+        // enemy.setBounce(0.2);
 
          /* ---- FALLING ASTEROIDS (RELEASED WHEN A STAR IS COLLECTED) ---- */
          asteroids = this.physics.add.group();
         this.physics.add.collider(asteroids, platforms);
-        this.physics.add.collider(player, enemy, asteroids, asteroidHit, null, this);
+        this.physics.add.collider(player, asteroids, asteroidHit, null, this);
 
         /* DETECT COLLISION WITH PLATFORMS*/
         /* SO SPRITE DOESNT'T FALL THROUGH TO SCREEN BOTTOM */
-        this.physics.add.collider(player, enemy, platforms); //for some reason when I add an enemy, the player falls through the screen too
+        this.physics.add.collider(player, platforms); //for some reason when I add an enemy, the player falls through the screen too
+        // this.physics.add.collider(enemy, platforms);
 
         /* DETECT OVERLAP WITH STARS => COLLECT */
         this.physics.add.collider(stars, platforms); // ALLOW FOR COLLISION
         this.physics.add.overlap(player, stars, collectStar, null, this);
         // UPON OVERLAP, CALL collectStar();
+
+        /* ENEMY MOVEMENT TOWARDS PLAYER */ 
+        //see if enemy and player within 400px of each other
+        // if(game.physics.arcade.distanceBetween(enemy, player) < 400)
 
         /* ---- ANIMATIONS!! ---- */
         this.anims.create({
