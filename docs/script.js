@@ -233,9 +233,13 @@ function collectStar(player, star){
         ast.setVelocity(Phaser.Math.Between(-200, 200), 200); // VARIABLE VELOCITY
     }
 
+
+// VARIABLES FOR MY API AND THIRD PARTY API //
+const GENIUS_MUSIC = 'https://api.genius.com/search?q=Soda%20Stereo&access_token=jmbsGwRanRzejMdGqv1A3OyybuuX4XHYZPqESgSQh2o00PbV1bqhW48D3W72ZlMO';
+const BIA_BACKEND = 'http://localhost:8080/';
     // CONNECTING MY BACKEND //
-const dataElement = document.querySelector('#data')
-const dataButtonElement = document.querySelector('#data-button')
+const dataElement = document.querySelector('#data');
+const dataButtonElement = document.querySelector('#data-button');
 dataButtonElement.addEventListener('click', async (e) => {
   try {
     const response = await fetch('mydataurl.com/somethingIneed')
@@ -251,7 +255,7 @@ const musicElement = document.querySelector('#music')
 const musicButtonElement = document.querySelector('#music-button')
 musicButtonElement.addEventListener('click', async (e) => {
   try {
-    const response = await fetch('https://api.genius.com/search?q=Soda%20Stereo&access_token=jmbsGwRanRzejMdGqv1A3OyybuuX4XHYZPqESgSQh2o00PbV1bqhW48D3W72ZlMO');
+    const response = await fetch(GENIUS_MUSIC);
     const data = await response.json()
     dataElement.innerHTML = data.content; // This is made up but something in the api has to have the content i want to add
   } catch(error){
