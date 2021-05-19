@@ -1,8 +1,12 @@
 .gameover{
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    position: fixed;
+    /* display: none; */
+    position: absolute;
+    width: 600px; /* Full width */
+    height: 400px; /* Full height */
+    align-items: center;
+    margin: 8%; /* 15% from the top and centered */
+    padding: 5px;
     color: red;
-    background-color: antiquewhite;
+    background-color: rgba(0,0,0, 0.8);
+    overflow: auto;
 }
