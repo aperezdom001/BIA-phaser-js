@@ -253,22 +253,43 @@ const BIA_BACKEND = 'http://localhost:8080/';
 
 
     // CONNECTING MY BACKEND //
-const dataElement = document.querySelector('#data');
+const dataElementContainer = document.querySelector('#data');
 const dataButtonElement = document.querySelector('#data-button');
-dataButtonElement.addEventListener('click', async (e) => {
-  try {
-    const response = await fetch(BIA_BACKEND);
-    const data = await response.json();
+
+// dataButtonElement.addEventListener('click', async (e) => {
+//   try {
+//     const response = await fetch(BIA_BACKEND);
+//     const data = await response.json();
+//     const playerInfoDivs = 
+//     `<div>
+//       <p>Initials: ${data.initials}</p>
+//       <p>Score: ${data.score}</p>
+//       </div>`
+//     dataElement.innerHTML = playerInfoDivs;
+//   } catch(error){
+//    console.error(error)
+//   }
+// });
+
+const addPlayerInfo = async(data) => {
+    console.log(data);
     const playerInfoDivs = 
-    `<div>
-      <p>Initials: ${data.initials}</p>
-      <p>Score: ${data.score}</p>
-      </div>`
-    dataElement.innerHTML = playerInfoDivs;
-  } catch(error){
-   console.error(error)
-  }
-});
+        `<div>
+          <p>Initials: ${data.initials}</p>
+          <p>Score: ${data.score}</p>
+          </div>`
+
+    dataElementContainer.innerHTML = playerInfoDivs;
+}
+const getPlayerInfo = async() => {
+    try {
+        const response = await fetch(BIA_BACKEND);
+        const data = await response.json();
+        addPlayerInfo(data);
+    }catch(err){
+        console.log(err);
+    }
+}
 
 // CRUD FUNCTIONALITY FOR FRONT END 
 
@@ -347,6 +368,9 @@ const deletePlayer = async () => {
         console.log(err)
     }
 }
+
+// BACKEND EVENT LISTENERS
+dataButtonElement.addEventListener("click", getPlayerInfo);
 
 //CONNECTING MY THIRD PARTY API //
 const musicElementContainer = document.querySelector('.musicdataContainer');
