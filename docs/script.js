@@ -237,14 +237,21 @@ function collectStar(player, star){
 // VARIABLES FOR MY API AND THIRD PARTY API //
 const GENIUS_MUSIC = 'https://api.genius.com/search?q=Soda%20Stereo&access_token=jmbsGwRanRzejMdGqv1A3OyybuuX4XHYZPqESgSQh2o00PbV1bqhW48D3W72ZlMO';
 const BIA_BACKEND = 'http://localhost:8080/';
+
+
     // CONNECTING MY BACKEND //
 const dataElement = document.querySelector('#data');
 const dataButtonElement = document.querySelector('#data-button');
 dataButtonElement.addEventListener('click', async (e) => {
   try {
-    const response = await fetch('mydataurl.com/somethingIneed')
-    const data = await response.json()
-    dataElement.innerHTML = data.content; // This is made up but something in the api has to have the content i want to add
+    const response = await fetch(BIA_BACKEND);
+    const data = await response.json();
+    const playerInfoDivs = 
+    `<div>
+      <p>Initials: ${data.initials}</p>
+      <p>Score: ${data.score}</p>
+      </div>`
+    dataElement.innerHTML = playerInfoDivs;
   } catch(error){
    console.error(error)
   }
@@ -257,7 +264,12 @@ musicButtonElement.addEventListener('click', async (e) => {
   try {
     const response = await fetch(GENIUS_MUSIC);
     const data = await response.json()
-    dataElement.innerHTML = data.content; // This is made up but something in the api has to have the content i want to add
+    const randomMusicDivs = 
+    `<div>
+      <p>Artist: ${data.artist}</p>
+      <p>Song: ${data.title}</p>
+      </div>`
+    dataElement.innerHTML = randomMusicDivs;
   } catch(error){
    console.error(error)
   }
