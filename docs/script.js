@@ -349,22 +349,31 @@ const deletePlayer = async () => {
 }
 
 //CONNECTING MY THIRD PARTY API //
-const musicElement = document.querySelector('#music')
+const musicElementContainer = document.querySelector('.musicdataContainer');
 const musicButtonElement = document.querySelector('#music-button')
-musicButtonElement.addEventListener('click', async (e) => {
-  try {
-    const response = await fetch(GENIUS_MUSIC);
-    const data = await response.json()
+
+const addMusicInfo = async(data) => {
+    console.log(data);
     const randomMusicDivs = 
-    `<div>
-      <h5>Artist: ${data.artist}</h5>
-      <h5>Song: ${data.title}</h5>
-      </div>`
-    dataElement.innerHTML = randomMusicDivs;
-  } catch(error){
-   console.error(error)
-  }
-});
+        `<div>
+        <h5>Artist: ${data.artist}</h5>
+        <h5>Song: ${data.title}</h5>
+        </div>`
+
+    musicElementContainer.innerHTML = randomMusicDivs;
+}
+const getMusicInfo = async() => {
+    try {
+        const response = await fetch(GENIUS_MUSIC);
+        const data = await response.json();
+        addMusicInfo(data);
+    }catch(err){
+        console.log(err);
+    }
+}
+
+//EVENT LISTENERS 
+musicButtonElement.addEventListener("click", getMusicInfo);
 
 /* WEBSITE TUTORIAL IS OUT OF DATE. FOLLOWING preload() DOES NOT WORK BC FILESTRUCTURE DOESN'T EXIST
     http://phaser.io/tutorials/making-your-first-phaser-3-game/part2 */
