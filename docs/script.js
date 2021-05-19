@@ -248,7 +248,7 @@ function collectStar(player, star){
 /* ----- MY BACK END AND FRONT END CODE ----- */ 
 
 // VARIABLES FOR MY API AND THIRD PARTY API //
-const GENIUS_MUSIC = 'https://api.genius.com/search?q=Soda%20Stereo&access_token=jmbsGwRanRzejMdGqv1A3OyybuuX4XHYZPqESgSQh2o00PbV1bqhW48D3W72ZlMO';
+const GENIUS_MUSIC = 'https://api.genius.com/search?q=Soda%20Stereo&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
 const BIA_BACKEND = 'http://localhost:8080/';
 
 
