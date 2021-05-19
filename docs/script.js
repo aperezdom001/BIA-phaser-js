@@ -350,7 +350,32 @@ const deletePlayer = async () => {
 
 //CONNECTING MY THIRD PARTY API //
 const musicElementContainer = document.querySelector('.musicdataContainer');
-const musicButtonElement = document.querySelector('#music-button')
+const musicButtonElement = document.querySelector('#music-button');
+
+//RANDOM GEN TEST
+const musicArr= [
+    'Soda Stereo - De Musica Ligera',
+    'Los Enanitos Verdes - Lamento Boliviano',
+    'Alaska Y Dinarama - A quien le importa',
+    'Mon Laferte - Mi Buen Amor', 
+    'Cafe Tacvba - Maria'
+];
+
+// const genRandomMusic = () => {
+//     let num = Math.floor(Math.random() * musicArr.length);
+
+//     return musicArr[num];
+// }
+
+const genRandomMusic = () => {
+        let num = Math.floor(Math.random() * data.length);
+    
+        return data[num];
+    }
+
+genRandomMusic();
+console.log(genRandomMusic());
+
 
 const addMusicInfo = async(data) => {
     console.log(data);
