@@ -1,0 +1,8 @@
+.gameover{
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    position: fixed;
+    color: red;
+    background-color: antiquewhite;
+}

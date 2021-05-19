@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Break It All</title>
-    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../docs/styles.css">
     <style type="text/css">
         body {
             margin: 143px;
@@ -26,12 +26,18 @@
         <button id="data-button">Check LeaderBoard</button>
     </div>
 
-    <div className='gameover'>
+    <div class="musicdata">
+        <button id="music-button">Generate Music</button>
+    </div>
+
+    <div class='gameover' class="visibility">
         <form>
             <h3>Enter your credentials</h3>
-            <input type="text" className="initials">
+            <input type="text" class="initials">
+            <h3>Score</h3>
+            <input type="text" class="score">
         </form>
-        <button className="submit">Submit</button>
+        <button onclick="update()" class="submit">Submit</button>
     </div>
 
      <!-- SCRIPTS -->

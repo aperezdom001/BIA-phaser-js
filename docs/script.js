@@ -147,6 +147,18 @@ function update() {
 
     // IF THE GAME IS OVER...
     if(gameOver){
+        // Write get element by classname visibility
+        const gameOverElement = document.querySelector('.gameover');
+        const submitButton = document.querySelector('.submit');
+        submitButton.addEventListener("click", gameOver);
+        if (gameOverElement.style.display === "none") {
+            gameOverElement.style.display = "block";
+          } else {
+            gameOverElement.style.display = "none";
+          }
+        // as soon as you lose, take off the class name
+        // in css give the class a hidden thing/ middle of screen
+        
         return;
     }
 
@@ -266,8 +278,8 @@ musicButtonElement.addEventListener('click', async (e) => {
     const data = await response.json()
     const randomMusicDivs = 
     `<div>
-      <p>Artist: ${data.artist}</p>
-      <p>Song: ${data.title}</p>
+      <h5>Artist: ${data.artist}</h5>
+      <h5>Song: ${data.title}</h5>
       </div>`
     dataElement.innerHTML = randomMusicDivs;
   } catch(error){
