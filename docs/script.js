@@ -249,7 +249,7 @@ function collectStar(player, star){
 
 // VARIABLES FOR MY API AND THIRD PARTY API //
 const GENIUS_MUSIC = 'https://api.genius.com/search?q=Soda%20Stereo&access_token=jmbsGwRanRzejMdGqv1A3OyybuuX4XHYZPqESgSQh2o00PbV1bqhW48D3W72ZlMO';
-const BIA_BACKEND = 'http://localhost:8080/initials';
+const BIA_BACKEND = 'http://localhost:8080/';
 
 
     // CONNECTING MY BACKEND //
