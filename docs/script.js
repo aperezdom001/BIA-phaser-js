@@ -245,11 +245,10 @@ function collectStar(player, star){
         ast.setVelocity(Phaser.Math.Between(-200, 200), 200); // VARIABLE VELOCITY
     }
 
-/* ----- MY BACK END AND FRONT END CODE ----- */ 
+/* ----- MY BACK END FRONT END CODE ----- */ 
 
-// VARIABLES FOR MY API AND THIRD PARTY API //
-const GENIUS_MUSIC = 'https://api.genius.com/search?q=Soda%20Stereo&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
-const BIA_BACKEND = 'http://localhost:8080/';
+// VARIABLES FOR MY BACKEND API //
+const BIA_BACKEND = 'http://localhost:8080/player';
 
 
     // CONNECTING MY BACKEND //
@@ -281,10 +280,13 @@ const addPlayerInfo = async(data) => {
 
     dataElementContainer.innerHTML = playerInfoDivs;
 }
+
 const getPlayerInfo = async() => {
+    console.log("hi");
     try {
         const response = await fetch(BIA_BACKEND);
         const data = await response.json();
+        console.log(data);
         addPlayerInfo(data);
     }catch(err){
         console.log(err);
@@ -372,6 +374,9 @@ const deletePlayer = async () => {
 // BACKEND EVENT LISTENERS
 dataButtonElement.addEventListener("click", getPlayerInfo);
 
+// VARIABLES FOR MY THIRD PARTY API //
+const GENIUS_MUSIC = 'https://api.genius.com/search?q=Soda%20Stereo&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
+
 //CONNECTING MY THIRD PARTY API //
 const musicElementContainer = document.querySelector('.musicdataContainer');
 const musicButtonElement = document.querySelector('#music-button');
@@ -385,17 +390,17 @@ const musicArr= [
     'Cafe Tacvba - Maria'
 ];
 
-// const genRandomMusic = () => {
-//     let num = Math.floor(Math.random() * musicArr.length);
-
-//     return musicArr[num];
-// }
-
 const genRandomMusic = () => {
-        let num = Math.floor(Math.random() * data.length);
+    let num = Math.floor(Math.random() * musicArr.length);
+
+    return musicArr[num];
+}
+
+// const genRandomMusic = () => {
+//         let num = Math.floor(Math.random() * data.length);
     
-        return data[num];
-    }
+//         return data[num];
+//     }
 
 genRandomMusic();
 console.log(genRandomMusic());
@@ -405,8 +410,8 @@ const addMusicInfo = async(data) => {
     console.log(data);
     const randomMusicDivs = 
         `<div>
-        <h5>Artist: ${data.artist}</h5>
-        <h5>Song: ${data.title}</h5>
+        <h5>Artist: ${data.initials}</h5>
+        <h5>Song: ${data.score}</h5>
         </div>`
 
     musicElementContainer.innerHTML = randomMusicDivs;
