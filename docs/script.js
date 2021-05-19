@@ -270,6 +270,16 @@ dataButtonElement.addEventListener('click', async (e) => {
   }
 });
 
+// CRUD FUNCTIONALITY FOR FRONT END 
+
+// CREATE PLAYER
+
+// READ PLAYER
+
+// UPDATE PLAYER
+
+// DELETE PLAYER
+
 //CONNECTING MY THIRD PARTY API //
 const musicElement = document.querySelector('#music')
 const musicButtonElement = document.querySelector('#music-button')
