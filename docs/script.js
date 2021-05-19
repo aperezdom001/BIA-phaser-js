@@ -273,12 +273,80 @@ dataButtonElement.addEventListener('click', async (e) => {
 // CRUD FUNCTIONALITY FOR FRONT END 
 
 // CREATE PLAYER
+const createPlayer = async () => {
+    const body = {
+        initials,
+        score
+    }
+    try{
+        const response = await fetch(BIA_BACKEND, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+    }catch (error){
+        console.log(err)
+    }
+}
 
 // READ PLAYER
+const getPlayer = async () => {
+    const body = {
+        initials,
+        score
+    }
+    try{
+        const response = await fetch(BIA_BACKEND, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+    }catch (error){
+        console.log(err)
+    }
+}
 
 // UPDATE PLAYER
+const updatedPlayer = async () => {
+    const body = {
+        initials,
+        score
+    }
+    try{
+        const response = await fetch(BIA_BACKEND, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+    }catch (error){
+        console.log(err)
+    }
+}
 
 // DELETE PLAYER
+const deletePlayer = async () => {
+    const body = {
+        initials,
+        score
+    }
+    try{
+        const response = await fetch(BIA_BACKEND, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+    }catch (error){
+        console.log(err)
+    }
+}
 
 //CONNECTING MY THIRD PARTY API //
 const musicElement = document.querySelector('#music')
