@@ -251,15 +251,17 @@ function collectStar(player, star){
 
 // VARIABLES FOR MY BACKEND API //
 const BIA_BACKEND = 'http://localhost:8080/player';
-const BIA_INITIALS = 'http://localhost:8080/player';
-const BIA_SCORE = 'http://localhost:8080/player';
-const BIA_ID = 'http://localhost:8080/player';
+// const BIA_INITIALS = 'http://localhost:8080/player';
+// const BIA_SCORE = 'http://localhost:8080/player';
+// const BIA_ID = 'http://localhost:8080/player';
 
 
     // CONNECTING MY BACKEND //
 const dataElementContainer = document.querySelector('#data');
 const dataButtonElement = document.querySelector('#data-button'); // Leaderboard Display
 const submitDataButtonElement = document.querySelector('#submit'); // Submit Form
+
+let initials = null;
 
 
 // dataButtonElement.addEventListener('click', async (e) => {
@@ -279,6 +281,7 @@ const submitDataButtonElement = document.querySelector('#submit'); // Submit For
 
 const addPlayerInfo = async(data) => {
     console.log(data);
+    console.log("pepsi");
     const playerInfoDivs = 
         `<div>
           <p>Initials: ${data.initials}</p>
@@ -297,7 +300,6 @@ const getPlayerInfo = async() => {
     try {
         const response = await fetch(BIA_BACKEND);
         const data = await response.json();
-        console.log(data);
         addPlayerInfo(data);
     }catch(err){
         console.log(err);
@@ -386,11 +388,11 @@ const deletePlayer = async () => {
 // DONT NEED the delete and update functions because the player wont interact with it
 // IT WILL ON
 dataButtonElement.addEventListener("click", getPlayerInfo); // LEADERBOARD
-submitDataButtonElement.addEventListener("click",createPlayer); // SUBMIT FORM
+submitDataButtonElement.addEventListener("click",addPlayerInfo); // SUBMIT FORM
 
 
 // VARIABLES FOR MY THIRD PARTY API //
-const GENIUS_MUSIC = 'https://api.genius.com/search?q=`${musicArr}`&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
+const GENIUS_MUSIC = 'https://api.genius.com/search?q=Soda%20Stereo&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
 
 //CONNECTING MY THIRD PARTY API //
 const musicElementContainer = document.querySelector('.musicdataContainer');
@@ -419,8 +421,7 @@ const addMusicInfo = async(data) => {
     console.log(data);
     const randomMusicDivs = 
         `<div>
-        <h5>Artist: ${data.response.full_title}</h5>
-        <h5>Song: ${data.score}</h5>
+        <h5>Artist & Song: ${data.response.hits[0].full_title}</h5>
         </div>`
 
     musicElementContainer.innerHTML = randomMusicDivs;
