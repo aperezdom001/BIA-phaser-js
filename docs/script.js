@@ -392,7 +392,7 @@ submitDataButtonElement.addEventListener("click",addPlayerInfo); // SUBMIT FORM
 
 
 // VARIABLES FOR MY THIRD PARTY API //
-const GENIUS_MUSIC = 'https://api.genius.com/search?q=Soda%20Stereo&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
+const GENIUS_MUSIC = 'https://api.genius.com/search?q=Cafe%20Tacvba&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
 
 //CONNECTING MY THIRD PARTY API //
 const musicElementContainer = document.querySelector('.musicdataContainer');
@@ -409,7 +409,7 @@ const musicArr= [
 
 const genRandomMusic = () => {
     let num = Math.floor(Math.random() * musicArr.length);
-
+    // musicArr.split('').join('%20');
     return musicArr[num];
 }
 
@@ -421,7 +421,7 @@ const addMusicInfo = async(data) => {
     console.log(data);
     const randomMusicDivs = 
         `<div>
-        <h5>Artist & Song: ${data.response.hits[0].full_title}</h5>
+        <h5>Artist & Song: ${data.response.hits[0].result.full_title}</h5>
         </div>`
 
     musicElementContainer.innerHTML = randomMusicDivs;
