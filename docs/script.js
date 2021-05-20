@@ -259,6 +259,7 @@ const BIA_ID = 'http://localhost:8080/player';
     // CONNECTING MY BACKEND //
 const dataElementContainer = document.querySelector('#data');
 const dataButtonElement = document.querySelector('#data-button');
+const submitDataButtonElement = document.querySelector('#submit');
 
 // dataButtonElement.addEventListener('click', async (e) => {
 //   try {
@@ -378,19 +379,18 @@ const deletePlayer = async () => {
     }
 }
 
-// Create a function that takes the data from the input and sends it to the back end
 
-const onTheInitialsChange = (e) => setTheTitle(e.target.value);
-const onScoreChange = (e) => setTheUrl(e.target.value);
+// BACKEND EVENT LISTENERS - When form is submitted, creates data that sends to backend
+// and displays to the screen when leaderboard button is clicked
+// DONT NEED the delete and update functions because the player wont interact with it
+// IT WILL ON
+dataButtonElement.addEventListener("click", getPlayerInfo); // LEADERBOARD
+submitDataButtonElement.addEventListener("click",createPlayer); // SUBMIT FORM
 
-const onFormSubmit = (e) => {
-    e.preventDefault();
-    const thePlayerData = { initials: theInitials, score: theScore }
-    updatedPlayer(thePlayerData, data._id)
-}
 
-// BACKEND EVENT LISTENERS
-dataButtonElement.addEventListener("click", getPlayerInfo);
+
+
+
 
 // VARIABLES FOR MY THIRD PARTY API //
 const GENIUS_MUSIC = 'https://api.genius.com/search?q=`${musicArr}`&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
