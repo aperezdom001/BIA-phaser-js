@@ -258,8 +258,9 @@ const BIA_ID = 'http://localhost:8080/player';
 
     // CONNECTING MY BACKEND //
 const dataElementContainer = document.querySelector('#data');
-const dataButtonElement = document.querySelector('#data-button');
-const submitDataButtonElement = document.querySelector('#submit');
+const dataButtonElement = document.querySelector('#data-button'); // Leaderboard Display
+const submitDataButtonElement = document.querySelector('#submit'); // Submit Form
+
 
 // dataButtonElement.addEventListener('click', async (e) => {
 //   try {
@@ -386,10 +387,6 @@ const deletePlayer = async () => {
 // IT WILL ON
 dataButtonElement.addEventListener("click", getPlayerInfo); // LEADERBOARD
 submitDataButtonElement.addEventListener("click",createPlayer); // SUBMIT FORM
-
-
-
-
 
 
 // VARIABLES FOR MY THIRD PARTY API //
