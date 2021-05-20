@@ -315,34 +315,54 @@ const submitDataButtonElement = document.querySelector('#submit'); // Submit For
 
 // CRUD FUNCTIONALITY FOR FRONT END 
 
-// CREATE MY PLAYER
-const addPlayerInfo = async(playerdata, event) => {
-    event.preventDefault();
-    try {
+let playerdata = [];
+const fetchPlayerData = async() => {
+    try{
         const response = await fetch(BIA_BACKEND);
         const data = await response.json();
-        console.log(addPlayerInfo);
-        console.log(playerdata);
-        const ulPlayerRecord = document.querySelector("ul");
-        playerdata.forEach((playRecord) => {
-        //iterate through each of our objects in the data array
-        const playerRecordList = document.createElement("li");
-        playerRecordList.innerText = playerdata(playRecord);
-        console.log(playRecord);
-        ulPlayerRecord.appendChild(playerRecordList);
-    
-        });
-        addPlayerInfo();
+        playerData = data;
+    }catch(err){
+        console.log(error);
+    }
+}
+
+fetchPlayerData();
+
+// CREATE MY PLAYER
+const addPlayerInfo = async(playerdata, event) => {
+    alert("why");
+    event.preventDefault();
+    console.log(playerdata);
+    const initials = document.querySelector('.initials');
+    const score = document.querySelector('.score');
+    try {
+        const response = await fetch(BIA_BACKEND,{
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                initials: initials.vallue,
+                score : score.value
+            })
+        })
     }catch(err){
         console.log(err);
     }
 
-
+    const ulPlayerRecord = document.querySelector("ul");
+    playerData.forEach((playRecord) => {
+        //iterate thorugh each ourobjects in the playRecord array
+        const playerRecordList = document.createElement("li");
+        playerRecordList.innerHTML = `<span>${playRecord.initials}</span><span>${playRecord.score}</span>`;
+        console.log(playRecord);
+        ulPlayerRecord.appendChild(playerRecordList);
+    })
 }
 
 
 // GET PLAYER
-let playerData[];
+
 const getPlayerInfo = async() => {
     console.log("hi");
     try {
