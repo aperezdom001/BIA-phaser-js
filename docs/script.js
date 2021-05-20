@@ -375,9 +375,6 @@ const getPlayerInfo = async() => {
     }
 }
 
-getPlayerInfo();
-
-
 // UPDATE PLAYER
 const updatedPlayer = async () => {
     const body = {
