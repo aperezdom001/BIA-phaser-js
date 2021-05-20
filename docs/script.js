@@ -262,8 +262,6 @@ const dataElementContainer = document.querySelector('#data');
 const dataButtonElement = document.querySelector('#data-button'); // Leaderboard Display
 const submitDataButtonElement = document.querySelector('#submit'); // Submit Form
 
-let initials = null;
-
 
 // dataButtonElement.addEventListener('click', async (e) => {
 //   try {
@@ -280,21 +278,16 @@ let initials = null;
 //   }
 // });
 
-const addPlayerInfo = async(playerdata) => {
+const addPlayerInfo = async(playerdata, event) => {
+    event.preventDefault();
     console.log(playerdata);
     console.log("pepsi");
-
     const ulPlayerRecord = document.querySelector("ul");
-
-
     playerdata.forEach((playRecord) => {
         //iterate through each of our objects in the data array
         const playerRecordList = document.createElement("li");
-        //playerRecordList.classList = playerRecordList[playRecord];
-        playerRecordList.innerText = playRecord
         playerRecordList.innerText = playerdata(playRecord);
         console.log(playRecord);
-
         ulPlayerRecord.appendChild(playerRecordList);
 
     });
@@ -406,8 +399,10 @@ const deletePlayer = async () => {
 // and displays to the screen when leaderboard button is clicked
 // DONT NEED the delete and update functions because the player wont interact with it
 // IT WILL ON
-dataButtonElement.addEventListener("click", getPlayerInfo); // LEADERBOARD
-document.getElementById('data-button').addEventListener("click",addPlayerInfo); // SUBMIT FORM
+dataButtonElement.addEventListener("click", (e) => {
+    getPlayerInfo}); // LEADERBOARD
+document.getElementById('#player-form').addEventListener("submit", (event) => {
+    addPlayerInfo(playerData, event)}); // SUBMIT FORM
 
 addPlayerInfo();
 
