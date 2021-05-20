@@ -318,32 +318,44 @@ const submitDataButtonElement = document.querySelector('#submit'); // Submit For
 // CREATE MY PLAYER
 const addPlayerInfo = async(playerdata, event) => {
     event.preventDefault();
-    console.log(playerdata);
-    const ulPlayerRecord = document.querySelector("ul");
-    playerdata.forEach((playRecord) => {
+    try {
+        const response = await fetch(BIA_BACKEND);
+        const data = await response.json();
+        console.log(addPlayerInfo);
+        console.log(playerdata);
+        const ulPlayerRecord = document.querySelector("ul");
+        playerdata.forEach((playRecord) => {
         //iterate through each of our objects in the data array
         const playerRecordList = document.createElement("li");
         playerRecordList.innerText = playerdata(playRecord);
         console.log(playRecord);
         ulPlayerRecord.appendChild(playerRecordList);
+    
+        });
+        addPlayerInfo();
+    }catch(err){
+        console.log(err);
+    }
 
-    });
 
 }
 
-// GET PLAYER
 
+// GET PLAYER
+let playerData[];
 const getPlayerInfo = async() => {
     console.log("hi");
     try {
         const response = await fetch(BIA_BACKEND);
         const data = await response.json();
-        console.log(addPlayerInfo);
-        addPlayerInfo();
+        playerData = data;
+
     }catch(err){
         console.log(err);
     }
 }
+
+getPlayerInfo();
 
 
 // UPDATE PLAYER
@@ -388,11 +400,11 @@ const deletePlayer = async () => {
 // BACKEND EVENT LISTENERS - When form is submitted, creates data that sends to backend
 // and displays to the screen when leaderboard button is clicked
 // DONT NEED the delete and update functions because the player wont interact with it
-// IT WILL ON
 dataButtonElement.addEventListener("click", () => {
     getPlayerInfo}); // LEADERBOARD
 document.getElementById('playerForm').addEventListener("submit", (event) => {
-    addPlayerInfo(playerData, event)}); // SUBMIT FORM
+    event.preventDefault();
+    addPlayerInfo(playerdata, event)}); // SUBMIT FORM
 
 
 
