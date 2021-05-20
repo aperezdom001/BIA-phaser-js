@@ -262,26 +262,12 @@ const dataElementContainer = document.querySelector('#data');
 const dataButtonElement = document.querySelector('#data-button'); // Leaderboard Display
 const submitDataButtonElement = document.querySelector('#submit'); // Submit Form
 
+// CRUD FUNCTIONALITY FOR FRONT END 
 
-// dataButtonElement.addEventListener('click', async (e) => {
-//   try {
-//     const response = await fetch(BIA_BACKEND);
-//     const data = await response.json();
-//     const playerInfoDivs = 
-//     `<div>
-//       <p>Initials: ${data.initials}</p>
-//       <p>Score: ${data.score}</p>
-//       </div>`
-//     dataElement.innerHTML = playerInfoDivs;
-//   } catch(error){
-//    console.error(error)
-//   }
-// });
-
+// CREATE MY PLAYER
 const addPlayerInfo = async(playerdata, event) => {
     event.preventDefault();
     console.log(playerdata);
-    console.log("pepsi");
     const ulPlayerRecord = document.querySelector("ul");
     playerdata.forEach((playRecord) => {
         //iterate through each of our objects in the data array
@@ -291,18 +277,8 @@ const addPlayerInfo = async(playerdata, event) => {
         ulPlayerRecord.appendChild(playerRecordList);
 
     });
-   
 
-
-    // const playerInfoDivs = 
-    //     `<div>
-    //       <p>Initials: ${data.initials}</p>
-    //       <p>Score: ${data.score}</p>
-    //       </div>`
-    // dataElementContainer.innerHTML = playerInfoDivs;
 }
-
-// CRUD FUNCTIONALITY FOR FRONT END 
 
 // GET PLAYER
 
@@ -311,50 +287,13 @@ const getPlayerInfo = async() => {
     try {
         const response = await fetch(BIA_BACKEND);
         const data = await response.json();
-        console.log(data);
-        ulPlayerRecord(data);
+        console.log(addPlayerInfo);
+        addPlayerInfo();
     }catch(err){
         console.log(err);
     }
 }
 
-// CREATE PLAYER
-const createPlayer = async () => {
-    const body = {
-        initials,
-        score
-    }
-    try{
-        const response = await fetch(BIA_BACKEND, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
-        });
-    }catch (error){
-        console.log(err)
-    }
-}
-
-// // READ PLAYER
-// const getPlayer = async () => {
-//     const body = {
-//         initials,
-//         score
-//     }
-//     try{
-//         const response = await fetch(BIA_INITIALS, {
-//             method: "POST",
-//             headers: {
-//               "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify(body)
-//         });
-//     }catch (error){
-//         console.log(err)
-//     }
-// }
 
 // UPDATE PLAYER
 const updatedPlayer = async () => {
@@ -399,12 +338,11 @@ const deletePlayer = async () => {
 // and displays to the screen when leaderboard button is clicked
 // DONT NEED the delete and update functions because the player wont interact with it
 // IT WILL ON
-dataButtonElement.addEventListener("click", (e) => {
+dataButtonElement.addEventListener("click", () => {
     getPlayerInfo}); // LEADERBOARD
-document.getElementById('#player-form').addEventListener("submit", (event) => {
+document.getElementById('#playerform').addEventListener("submit", (event) => {
     addPlayerInfo(playerData, event)}); // SUBMIT FORM
 
-addPlayerInfo();
 
 
 // VARIABLES FOR MY THIRD PARTY API //
