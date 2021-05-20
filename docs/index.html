@@ -33,9 +33,9 @@
     <div class='gameover' class="visibility">
         <form>
             <h3>Enter your credentials</h3>
-            <input type="text" class="initials">
+            <input type="text" class="initials" onChange={onTheInitialsChange}>
             <h3>Score</h3>
-            <input type="text" class="score">
+            <input type="text" class="score" onChange={onScoreChange}>
         </form>
         <button onclick="update()" class="submit">Submit</button>
     </div>

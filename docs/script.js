@@ -50,7 +50,7 @@ function preload() {
     this.load.image('ground', '/sprites/platform.png');
     // this.load.image('star', '/phaser3/star2.png');
     this.load.image('star', '/demoscene/star.png');
-    this.load.image('asteroid', '/games/asteroids/asteroid2.png');
+    this.load.image('asteroid', '/sprites/wizball.png');
     this.load.spritesheet('dude',
         '/sprites/dude.png',
         { frameWidth: 32, frameHeight: 48 }
@@ -201,7 +201,7 @@ function collectStar(player, star){
     // TEST
     console.log('Char collect the star');
     // MAKE STAR INVISIBLE
-    star.disableBody(true, true);
+    star.disableBody(true, true);   
 
     // ADD TO PLAYER SCORE
     score+=10;
@@ -237,18 +237,23 @@ function collectStar(player, star){
     }
 
     function dropAsteroid(x){
-        console.log('Astroid dropped')
+        console.log('Enemy descends');
         // Group.create() RETURNS INSTANCE OF NEW OBJECT
-        var ast = asteroids.create(x, 16, 'asteroid').setScale(0.5);
+        var ast = asteroids.create(x, 10, 'asteroid').setScale(0.5);
         ast.setBounce(1);
         ast.setCollideWorldBounds(true);
         ast.setVelocity(Phaser.Math.Between(-200, 200), 200); // VARIABLE VELOCITY
     }
 
+    function attackEnemy(){}
+
 /* ----- MY BACK END FRONT END CODE ----- */ 
 
 // VARIABLES FOR MY BACKEND API //
 const BIA_BACKEND = 'http://localhost:8080/player';
+const BIA_INITIALS = 'http://localhost:8080/player';
+const BIA_SCORE = 'http://localhost:8080/player';
+const BIA_ID = 'http://localhost:8080/player';
 
 
     // CONNECTING MY BACKEND //
@@ -281,6 +286,10 @@ const addPlayerInfo = async(data) => {
     dataElementContainer.innerHTML = playerInfoDivs;
 }
 
+// CRUD FUNCTIONALITY FOR FRONT END 
+
+// GET PLAYER
+
 const getPlayerInfo = async() => {
     console.log("hi");
     try {
@@ -292,8 +301,6 @@ const getPlayerInfo = async() => {
         console.log(err);
     }
 }
-
-// CRUD FUNCTIONALITY FOR FRONT END 
 
 // CREATE PLAYER
 const createPlayer = async () => {
@@ -314,24 +321,24 @@ const createPlayer = async () => {
     }
 }
 
-// READ PLAYER
-const getPlayer = async () => {
-    const body = {
-        initials,
-        score
-    }
-    try{
-        const response = await fetch(BIA_BACKEND, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
-        });
-    }catch (error){
-        console.log(err)
-    }
-}
+// // READ PLAYER
+// const getPlayer = async () => {
+//     const body = {
+//         initials,
+//         score
+//     }
+//     try{
+//         const response = await fetch(BIA_INITIALS, {
+//             method: "POST",
+//             headers: {
+//               "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify(body)
+//         });
+//     }catch (error){
+//         console.log(err)
+//     }
+// }
 
 // UPDATE PLAYER
 const updatedPlayer = async () => {
@@ -341,7 +348,7 @@ const updatedPlayer = async () => {
     }
     try{
         const response = await fetch(BIA_BACKEND, {
-            method: "POST",
+            method: "PUT",
             headers: {
               "Content-Type": "application/json"
             },
@@ -359,8 +366,8 @@ const deletePlayer = async () => {
         score
     }
     try{
-        const response = await fetch(BIA_BACKEND, {
-            method: "POST",
+        const response = await fetch(BIA_ID, {
+            method: "DELETE",
             headers: {
               "Content-Type": "application/json"
             },
@@ -371,11 +378,22 @@ const deletePlayer = async () => {
     }
 }
 
+// Create a function that takes the data from the input and sends it to the back end
+
+const onTheInitialsChange = (e) => setTheTitle(e.target.value);
+const onScoreChange = (e) => setTheUrl(e.target.value);
+
+const onFormSubmit = (e) => {
+    e.preventDefault();
+    const thePlayerData = { initials: theInitials, score: theScore }
+    updatedPlayer(thePlayerData, data._id)
+}
+
 // BACKEND EVENT LISTENERS
 dataButtonElement.addEventListener("click", getPlayerInfo);
 
 // VARIABLES FOR MY THIRD PARTY API //
-const GENIUS_MUSIC = 'https://api.genius.com/search?q=Soda%20Stereo&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
+const GENIUS_MUSIC = 'https://api.genius.com/search?q=`${musicArr}`&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
 
 //CONNECTING MY THIRD PARTY API //
 const musicElementContainer = document.querySelector('.musicdataContainer');
@@ -396,12 +414,6 @@ const genRandomMusic = () => {
     return musicArr[num];
 }
 
-// const genRandomMusic = () => {
-//         let num = Math.floor(Math.random() * data.length);
-    
-//         return data[num];
-//     }
-
 genRandomMusic();
 console.log(genRandomMusic());
 
@@ -410,7 +422,7 @@ const addMusicInfo = async(data) => {
     console.log(data);
     const randomMusicDivs = 
         `<div>
-        <h5>Artist: ${data.initials}</h5>
+        <h5>Artist: ${data.response.full_title}</h5>
         <h5>Song: ${data.score}</h5>
         </div>`
 
