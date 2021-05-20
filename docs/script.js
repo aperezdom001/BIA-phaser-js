@@ -280,18 +280,19 @@ let initials = null;
 //   }
 // });
 
-const addPlayerInfo = async(data) => {
-    console.log(data);
+const addPlayerInfo = async(playerdata) => {
+    console.log(playerdata);
     console.log("pepsi");
 
     const ulPlayerRecord = document.querySelector("ul");
 
 
-    data.forEach((playRecord) => {
+    playerdata.forEach((playRecord) => {
         //iterate through each of our objects in the data array
         const playerRecordList = document.createElement("li");
         //playerRecordList.classList = playerRecordList[playRecord];
         playerRecordList.innerText = playRecord
+        playerRecordList.innerText = playerdata(playRecord);
         console.log(playRecord);
 
         ulPlayerRecord.appendChild(playerRecordList);
@@ -305,8 +306,7 @@ const addPlayerInfo = async(data) => {
     //       <p>Initials: ${data.initials}</p>
     //       <p>Score: ${data.score}</p>
     //       </div>`
-
-    dataElementContainer.innerHTML = playerInfoDivs;
+    // dataElementContainer.innerHTML = playerInfoDivs;
 }
 
 // CRUD FUNCTIONALITY FOR FRONT END 
@@ -407,7 +407,9 @@ const deletePlayer = async () => {
 // DONT NEED the delete and update functions because the player wont interact with it
 // IT WILL ON
 dataButtonElement.addEventListener("click", getPlayerInfo); // LEADERBOARD
-submitDataButtonElement.addEventListener("click",addPlayerInfo); // SUBMIT FORM
+document.getElementById('data-button').addEventListener("click",addPlayerInfo); // SUBMIT FORM
+
+addPlayerInfo();
 
 
 // VARIABLES FOR MY THIRD PARTY API //
