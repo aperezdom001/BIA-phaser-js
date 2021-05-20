@@ -47,8 +47,9 @@ function preload() {
     /* FIRST PARAM IS JUST SETTING A VAR NAME*/
     /* SECOND FINISHES THE URL REFERENCE */
     this.load.image('sky', '/skies/sky4.png');
-    this.load.image('ground', '/sprites/platform.png');
+    this.load.image('ground', '/demoscene/raster-bw-800.png');
     // this.load.image('star', '/phaser3/star2.png');
+    this.load.image('base', '/sprites/platform.png');
     this.load.image('star', '/demoscene/star.png');
     this.load.image('asteroid', '/sprites/wizball.png');
     this.load.spritesheet('dude',
@@ -150,12 +151,12 @@ function update() {
         // Write get element by classname visibility
         const gameOverElement = document.querySelector('.gameover');
         const submitButton = document.querySelector('.submit');
-        submitButton.addEventListener("click", gameOver);
-        if (gameOverElement.style.display === "none") {
-            gameOverElement.style.display = "block";
-          } else {
-            gameOverElement.style.display = "none";
-          }
+        // submitButton.addEventListener("click", gameOver);
+        // if (gameOverElement.style.display === "none") {
+        //     gameOverElement.style.display = "block";
+        //   } else {
+        //     gameOverElement.style.display = "none";
+        //   }
         // as soon as you lose, take off the class name
         // in css give the class a hidden thing/ middle of screen
         
@@ -226,20 +227,20 @@ function collectStar(player, star){
     function createPlatforms(platforms){
     /* SETTING THE GROUND USING A PLATFORM (SCALING UP TO FILL THE SCENE)*/
     /* ALWAYS ALWAYS USE refreshBody() WHEN RESCALING A STATIC OBJECT*/
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    platforms.create(2, 568, 'ground').setScale(2).refreshBody();
 
     /* ADDING FLOATING PLATFORMS*/
     /* NO RESCALE SO NO refesh() */
-    platforms.create(600, 400, 'ground');
-    platforms.create(50, 250, 'ground');
-    platforms.create(750, 220, 'ground');
+    platforms.create(900, 400, 'ground');
+    platforms.create(800, 100, 'ground');
+    platforms.create(-5, 253, 'ground');
 
     }
 
     function dropAsteroid(x){
         console.log('Enemy descends');
         // Group.create() RETURNS INSTANCE OF NEW OBJECT
-        var ast = asteroids.create(x, 10, 'asteroid').setScale(0.5);
+        var ast = asteroids.create(x, 5, 'asteroid').setScale(0.5);
         ast.setBounce(1);
         ast.setCollideWorldBounds(true);
         ast.setVelocity(Phaser.Math.Between(-200, 200), 200); // VARIABLE VELOCITY
@@ -282,11 +283,28 @@ let initials = null;
 const addPlayerInfo = async(data) => {
     console.log(data);
     console.log("pepsi");
-    const playerInfoDivs = 
-        `<div>
-          <p>Initials: ${data.initials}</p>
-          <p>Score: ${data.score}</p>
-          </div>`
+
+    const ulPlayerRecord = document.querySelector("ul");
+
+
+    data.forEach((playRecord) => {
+        //iterate through each of our objects in the data array
+        const playerRecordList = document.createElement("li");
+        //playerRecordList.classList = playerRecordList[playRecord];
+        playerRecordList.innerText = playRecord
+        console.log(playRecord);
+
+        ulPlayerRecord.appendChild(playerRecordList);
+
+    });
+   
+
+
+    // const playerInfoDivs = 
+    //     `<div>
+    //       <p>Initials: ${data.initials}</p>
+    //       <p>Score: ${data.score}</p>
+    //       </div>`
 
     dataElementContainer.innerHTML = playerInfoDivs;
 }
@@ -300,7 +318,8 @@ const getPlayerInfo = async() => {
     try {
         const response = await fetch(BIA_BACKEND);
         const data = await response.json();
-        addPlayerInfo(data);
+        console.log(data);
+        ulPlayerRecord(data);
     }catch(err){
         console.log(err);
     }
