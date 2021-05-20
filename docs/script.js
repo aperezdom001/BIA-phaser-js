@@ -249,6 +249,7 @@ function collectStar(player, star){
     function attackEnemy(){}
 
 
+/* ---- MY 3RD PARTY API CODE ----  */
 
 // VARIABLES FOR MY THIRD PARTY API //
 const GENIUS_MUSIC = 'https://api.genius.com/search?q=Cafe%20Tacvba&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
@@ -390,7 +391,7 @@ const deletePlayer = async () => {
 // IT WILL ON
 dataButtonElement.addEventListener("click", () => {
     getPlayerInfo}); // LEADERBOARD
-document.getElementById('#playerform').addEventListener("submit", (event) => {
+document.getElementById('playerForm').addEventListener("submit", (event) => {
     addPlayerInfo(playerData, event)}); // SUBMIT FORM
 
 
