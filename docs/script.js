@@ -248,6 +248,56 @@ function collectStar(player, star){
 
     function attackEnemy(){}
 
+
+
+// VARIABLES FOR MY THIRD PARTY API //
+const GENIUS_MUSIC = 'https://api.genius.com/search?q=Cafe%20Tacvba&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
+
+//CONNECTING MY THIRD PARTY API //
+const musicElementContainer = document.querySelector('.musicdataContainer');
+const musicButtonElement = document.querySelector('#music-button');
+
+//RANDOM GEN TEST
+const musicArr= [
+    'Soda Stereo - De Musica Ligera',
+    'Los Enanitos Verdes - Lamento Boliviano',
+    'Alaska Y Dinarama - A quien le importa',
+    'Mon Laferte - Mi Buen Amor', 
+    'Cafe Tacvba - Maria'
+];
+
+const genRandomMusic = () => {
+    let num = Math.floor(Math.random() * musicArr.length);
+    // musicArr.split('').join('%20');
+    return musicArr[num];
+}
+
+genRandomMusic();
+console.log(genRandomMusic());
+
+
+const addMusicInfo = async(data) => {
+    console.log(data);
+    const randomMusicDivs = 
+        `<div>
+        <h5>Artist & Song: ${data.response.hits[0].result.full_title}</h5>
+        </div>`
+
+    musicElementContainer.innerHTML = randomMusicDivs;
+}
+const getMusicInfo = async() => {
+    try {
+        const response = await fetch(GENIUS_MUSIC);
+        const data = await response.json();
+        addMusicInfo(data);
+    }catch(err){
+        console.log(err);
+    }
+}
+
+//EVENT LISTENERS 
+musicButtonElement.addEventListener("click", getMusicInfo);
+
 /* ----- MY BACK END FRONT END CODE ----- */ 
 
 // VARIABLES FOR MY BACKEND API //
@@ -345,53 +395,6 @@ document.getElementById('#playerform').addEventListener("submit", (event) => {
 
 
 
-// VARIABLES FOR MY THIRD PARTY API //
-const GENIUS_MUSIC = 'https://api.genius.com/search?q=Cafe%20Tacvba&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
-
-//CONNECTING MY THIRD PARTY API //
-const musicElementContainer = document.querySelector('.musicdataContainer');
-const musicButtonElement = document.querySelector('#music-button');
-
-//RANDOM GEN TEST
-const musicArr= [
-    'Soda Stereo - De Musica Ligera',
-    'Los Enanitos Verdes - Lamento Boliviano',
-    'Alaska Y Dinarama - A quien le importa',
-    'Mon Laferte - Mi Buen Amor', 
-    'Cafe Tacvba - Maria'
-];
-
-const genRandomMusic = () => {
-    let num = Math.floor(Math.random() * musicArr.length);
-    // musicArr.split('').join('%20');
-    return musicArr[num];
-}
-
-genRandomMusic();
-console.log(genRandomMusic());
-
-
-const addMusicInfo = async(data) => {
-    console.log(data);
-    const randomMusicDivs = 
-        `<div>
-        <h5>Artist & Song: ${data.response.hits[0].result.full_title}</h5>
-        </div>`
-
-    musicElementContainer.innerHTML = randomMusicDivs;
-}
-const getMusicInfo = async() => {
-    try {
-        const response = await fetch(GENIUS_MUSIC);
-        const data = await response.json();
-        addMusicInfo(data);
-    }catch(err){
-        console.log(err);
-    }
-}
-
-//EVENT LISTENERS 
-musicButtonElement.addEventListener("click", getMusicInfo);
 
 /* WEBSITE TUTORIAL IS OUT OF DATE. FOLLOWING preload() DOES NOT WORK BC FILESTRUCTURE DOESN'T EXIST
     http://phaser.io/tutorials/making-your-first-phaser-3-game/part2 */
