@@ -302,10 +302,7 @@ musicButtonElement.addEventListener("click", getMusicInfo);
 /* ----- MY BACK END FRONT END CODE ----- */ 
 
 // VARIABLES FOR MY BACKEND API //
-const BIA_BACKEND = 'http://localhost:8080/player';
-// const BIA_INITIALS = 'http://localhost:8080/player';
-// const BIA_SCORE = 'http://localhost:8080/player';
-// const BIA_ID = 'http://localhost:8080/player';
+const BIA_BACKEND = 'https://bia-back-end.herokuapp.com/player';
 
 
     // CONNECTING MY BACKEND //
@@ -330,7 +327,7 @@ fetchPlayerData();
 
 // CREATE MY PLAYER
 const addPlayerInfo = async(playerdata, event) => {
-    alert("why");
+    alert("Post created");
     event.preventDefault();
     console.log(playerdata);
     const initials = document.querySelector('.initials');
@@ -342,7 +339,7 @@ const addPlayerInfo = async(playerdata, event) => {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                initials: initials.vallue,
+                initials: initials.value,
                 score : score.value
             })
         })
@@ -351,7 +348,7 @@ const addPlayerInfo = async(playerdata, event) => {
     }
 
     const ulPlayerRecord = document.querySelector("ul");
-    playerData.forEach((playRecord) => {
+    playerdata.forEach((playRecord) => {
         //iterate thorugh each ourobjects in the playRecord array
         const playerRecordList = document.createElement("li");
         playerRecordList.innerHTML = `<span>${playRecord.initials}</span><span>${playRecord.score}</span>`;
@@ -368,7 +365,8 @@ const getPlayerInfo = async() => {
     try {
         const response = await fetch(BIA_BACKEND);
         const data = await response.json();
-        playerData = data;
+        console.log(addPlayerInfo);
+        addPlayerInfo();
 
     }catch(err){
         console.log(err);
@@ -421,7 +419,7 @@ dataButtonElement.addEventListener("click", () => {
     getPlayerInfo}); // LEADERBOARD
 document.getElementById('playerForm').addEventListener("submit", (event) => {
     event.preventDefault();
-    addPlayerInfo(playerdata, event)}); // SUBMIT FORM
+    addPlayerInfo(playerData, event)}); // SUBMIT FORM
 
 
 
