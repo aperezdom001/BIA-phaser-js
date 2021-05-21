@@ -1,3 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Shadows+Into+Light&display=swap');
+
+.body{
+    background-color: #AE759F;
+
+}
+.gameTitle{
+    font-family: "Shadows Into Light", cursive;
+    display: flex;
+    justify-content: center;
+    background-color: #210b2c;
+    color: #D8B4E2;
+    font-size: 80px;
+}
+
+.leaderboardTitle{
+    font-family: "Gloria Hallelujah", "cursive";
+}
+
+li, .musicdataContainer{
+    display: flex;
+    flex-direction: row;
+    font-family: "Gloria Hallelujah", "cursive";
+    list-style: decimal;
+}
+
+#data-button, #music-button{
+    font-family: "Gloria Hallelujah", "cursive";
+    border-radius: 1em;
+    background-color: #210B2C;
+    color: #D8B4E2;
+    border: none;
+}
+
+
 .gameover{
     display: none;
     position: absolute;
@@ -7,6 +42,6 @@
     margin: 8%; /* 15% from the top and centered */
     padding: 5px;
     color: red;
-    background-color: rgba(0,0,0, 0.8);
+    background-color: rgba(33,11,44, 0.8);
     overflow: auto;
 }
