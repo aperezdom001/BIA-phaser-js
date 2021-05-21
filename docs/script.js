@@ -1,12 +1,12 @@
 console.log("JS linked!");
 /* ---- ADDING BACKGROUND MUSIC ---- */
-const backgroundMusic = document.getElementById("theme");
+// const backgroundMusic = document.getElementById("theme");
 
-const playMusic = () => {
-    backgroundMusic.play();
-}
+// const playMusic = () => {
+//     backgroundMusic.play();
+// }
 
-playMusic();
+// playMusic();
 
 
 /* ---- SETUP ---- */
@@ -43,6 +43,7 @@ playMusic();
     var platforms;
     var asteroids;
     var player;
+    var keys;
     var cursor;
     var gameOver;
 
@@ -67,6 +68,9 @@ function preload() {
 
         /* ADDING ASSETS TO BROWSER/CANVAS */
 function create() {
+
+    ///Adding my WASD keys
+    keys = this.input.keyboard.addKeys("W,A,S,D");
 
     /* LOADED IN ORDER OF BACK TO FRONT */
     this.add.image(400, 300, 'sky');
@@ -164,12 +168,12 @@ console.log({gameOver});
 
     /* DEFINING WHAT HAPPENS WITH EACH KEYBOARD TRIGGER*/
 
-    if(cursors.left.isDown){
+    if(keys.A.isDown){
         player.setVelocityX(-160);  // LEFT = NEGATIVE X AXIS
         player.anims.play('left', true); // CALLING 'LEFT' ANIM FROM BEFORE
     } 
     
-    else if(cursors.right.isDown) {
+    else if(keys.D.isDown) {
         player.setVelocityX(160);
         player.anims.play('right', true);
     }
@@ -180,7 +184,7 @@ console.log({gameOver});
     }
 
     // JUMPING: CHECK IF ON THE FLOOR SO NO DOUBLE JUMPS //
-    if(cursors.up.isDown && player.body.touching.down){
+    if(keys.W.isDown && player.body.touching.down){
         player.setVelocityY(-300); // HEIGHT OF JUMP
     }
 }

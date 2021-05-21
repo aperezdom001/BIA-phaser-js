@@ -19,7 +19,6 @@
 </head>
 
 <body>
-    <audio id="theme" src="Mercury.wav"></audio>
     <div class='background-contain'>
     <h1 class='gameTitle'> ~| SURVIVOR |~</h1>
     
@@ -32,6 +31,11 @@
     <div class="musicdataContainer">
         <button id="music-button">Generate Music</button>
     </div>
+    
+    <audio controls autoplay>
+        <source src="Mercury.wav" type="audio/wav">
+    </audio>
+
     <div class='gameover' class="visibility">
         <form id="playerForm"> 
             <h3>Enter your initials</h3>
