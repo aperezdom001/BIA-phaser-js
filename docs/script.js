@@ -54,7 +54,7 @@ function preload() {
 
     /* FIRST PARAM IS JUST SETTING A VAR NAME*/
     /* SECOND FINISHES THE URL REFERENCE */
-    this.load.image('sky', '/skies/sky4.png');
+    this.load.image('sky', 'pics/town-wreck.jpg');
     this.load.image('ground', '/demoscene/raster-bw-800.png');
     // this.load.image('star', '/phaser3/star2.png');
     this.load.image('base', '/sprites/platform.png');
