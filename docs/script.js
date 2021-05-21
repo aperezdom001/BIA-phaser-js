@@ -1,5 +1,12 @@
 console.log("JS linked!");
+/* ---- ADDING BACKGROUND MUSIC ---- */
+const backgroundMusic = document.getElementById("theme");
 
+const playMusic = () => {
+    backgroundMusic.play();
+}
+
+playMusic();
 
 
 /* ---- SETUP ---- */
