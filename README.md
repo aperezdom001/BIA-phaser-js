@@ -28,6 +28,10 @@ Instructions:
  - phaser3 tutorial: http://phaser.io/tutorials/making-your-first-phaser-3-game/part1
  - Assets from phaser: https://labs.phaser.io/assets
  - Audio from OpenGameArt: https://opengameart.org/content/nes-shooter-music-5-tracks-3-jingles
+ - Link to my Backend GitHub and Heroku: 
+    - https://github.com/aperezdom001/bia-backend
+    - https://bia-back-end.herokuapp.com/player
+    
 
  
 *Getting Started* 
