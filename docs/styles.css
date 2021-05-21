@@ -1,5 +1,5 @@
 .gameover{
-    /* display: none; */
+    display: none;
     position: absolute;
     width: 600px; /* Full width */
     height: 400px; /* Full height */
