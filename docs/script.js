@@ -322,7 +322,7 @@ fetchPlayerData();
 
 // CREATE MY PLAYER
 const addPlayerInfo = async(playerdata, event) => {
-    alert("Post created");
+    //alert("Post created");
     event.preventDefault();
     console.log(playerdata);
     const initials = document.querySelector('.initials');
@@ -346,7 +346,7 @@ const addPlayerInfo = async(playerdata, event) => {
     playerdata.forEach((playRecord) => {
         //iterate thorugh each ourobjects in the playRecord array
         const playerRecordList = document.createElement("li");
-        playerRecordList.innerHTML = `<span> ${playRecord.initials} -  </span><span> ${playRecord.score} </span>`;
+        playerRecordList.innerHTML = `<span> ${playRecord.initials} -   </span><span>  ${playRecord.score} </span>`;
         console.log(playRecord);
         ulPlayerRecord.appendChild(playerRecordList);
     })

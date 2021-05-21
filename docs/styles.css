@@ -18,12 +18,16 @@
 }
 
 li, .musicdataContainer{
-    display: flex;
-    flex-direction: row;
     font-family: "Gloria Hallelujah", "cursive";
     list-style: decimal;
 }
 
+
+
+.musicdataContainer{
+    font-family: "Gloria Hallelujah", "cursive";
+    font-size:larger;
+}
 #data-button, #music-button{
     font-family: "Gloria Hallelujah", "cursive";
     border-radius: 1em;
@@ -32,7 +36,18 @@ li, .musicdataContainer{
     border: none;
 }
 
+#playerForm{
+    font-family: "Gloria Hallelujah", "cursive";
+    color: #ecd2f3;
+}
 
+#submit{
+    font-family: "Gloria Hallelujah", "cursive";
+    border-radius: 1em;
+    background-color: #210B2C;
+    color: #D8B4E2;
+    border: none;
+}
 .gameover{
     display: none;
     position: absolute;
@@ -42,6 +57,6 @@ li, .musicdataContainer{
     margin: 8%; /* 15% from the top and centered */
     padding: 5px;
     color: red;
-    background-color: rgba(33,11,44, 0.8);
+    background-color: rgba(33,11,44, 0.9);
     overflow: auto;
 }

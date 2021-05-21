@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Break It All</title>
+    <title>SURVIVOR</title>
     <link rel="stylesheet" href="styles.css">
     <style type="text/css">
         body {
-            margin: 143px;
+            margin:320px;
             background-color: #919feb;
         }
     </style>
@@ -19,24 +19,27 @@
 </head>
 
 <body>
+
     <div class='background-contain'>
     <h1 class='gameTitle'> ~| SURVIVOR |~</h1>
     
-        <h1 class='leaderboardTitle'>LeaderBoard</h1>
+        <h1 class='leaderboardTitle'>Leader Board</h1>
         <div id="data"></div>
-        <button id="data-button">Check LeaderBoard</button>
+        <button id="data-button">Check Leader Board</button>
         <ul></ul>
     </div>
 
     <div class="musicdataContainer">
         <button id="music-button">Generate Music</button>
     </div>
-
+    <audio controls autoplay>
+        <source src="Mercury.wav" type="audio/wav">
+    </audio>
     <div class='gameover' class="visibility">
         <form id="playerForm"> 
             <h3>Enter your initials</h3>
             <input type="text" class="initials">
-            <h3>Score</h3>
+            <h3>Enter your Score</h3>
             <input type="text" class="score">
             <button id="submit">Submit</button>
         </form>
