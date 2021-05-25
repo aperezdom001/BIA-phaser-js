@@ -16,7 +16,16 @@ Instructions:
  - Collect as many voices as you can or the game is over!!
  - The "lights" you collect are people's voices that have been lost
  - Green enemies represent powerful rich and political figures that want to stop you from collecting those voices.
-  
+
+
+Screenshots:
+![Screen Shot 2021-05-21 at 2 17 16 AM](https://user-images.githubusercontent.com/79831483/119570714-bc1c7a80-bd6d-11eb-9dff-2483b5d7c4f8.png)
+
+<img width="1124" alt="Screen Shot 2021-05-25 at 3 28 31 PM" src="https://user-images.githubusercontent.com/79831483/119570922-f128cd00-bd6d-11eb-9ecd-e8f73104bb5b.png">
+
+<img width="973" alt="Screen Shot 2021-05-25 at 3 28 49 PM" src="https://user-images.githubusercontent.com/79831483/119570937-f71eae00-bd6d-11eb-8d21-dc4f6a2e239c.png">
+
+
 
 *Technologies*
 
