@@ -14,6 +14,8 @@ Instructions:
  - Use the AWD keys to navigate your way through the platform and collect the voices. 
  - Each time a voice is collected, an enemy (someone of higher power like in the documentary) will descend down and bounce
  - Collect as many voices as you can or the game is over!!
+ - The "lights" you collect are people's voices that have been lost
+ - Green enemies represent powerful rich and political figures that want to stop you from collecting those voices.
   
 
 *Technologies*
@@ -32,12 +34,16 @@ Instructions:
     - https://github.com/aperezdom001/bia-backend
     - https://bia-back-end.herokuapp.com/player
     
-
  
 *Getting Started* 
 
 - Deployed app: https://bia-game.herokuapp.com/
 - Trello: https://trello.com/b/h9eENtG7/final-project
+- User stories:
+  - I want to be able to navigate through the app easily.
+  - I want to be able to play using the keys of the keyboard.
+  - I want to be able to click a button that generates a random song.
+  - After game is over, I want to be able to see my score on the leaderboard along with others!
 
 
 *Unsolved Problems*
@@ -46,7 +52,10 @@ Instructions:
 - when a form is turned in, you gotta refresh the page and play again to see the last entry
 - fix some game physics and platforms to make the game a little easier to play
 
+
 *Future Enhancements*
 
-- Slowly create a story art and implement my own art
+- Create my own art
 - Fix phaser.js to be cleaner
+- Create a story line and some more scenes in order for the game to make more sense!
+- I want to be able to see the songs I collected according to the number of enemies I defeated.
