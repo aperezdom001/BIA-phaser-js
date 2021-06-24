@@ -258,7 +258,7 @@ function collectStar(player, star){
 /* ---- MY 3RD PARTY API CODE ----  */
 
 // VARIABLES FOR MY THIRD PARTY API //
-const GENIUS_MUSIC = 'https://api.genius.com/search?q=Cafe%20Tacvba&access_token=N0_NNZHi7ZgQFGIdrU_GYDPwI3uVrab6SIg4v3Lk6vcDd4I6WtpKhijwjdySMo21';
+const GENIUS_MUSIC = 'https://api.genius.com/search?q=Cafe%20Tacvba&access_token=CLIENT_ACCESS_TOKEN';
 
 //CONNECTING MY THIRD PARTY API //
 const musicElementContainer = document.querySelector('.musicdataContainer');
